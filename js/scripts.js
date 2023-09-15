@@ -1,4 +1,6 @@
-let favoriteFood = "Pizza";
+// Task 1
 
-document.write(favoriteFood);
-alert("Hello World");
+// let favoriteFood = "Pizza";
+
+// document.write(favoriteFood);
+// alert("Hello World");
