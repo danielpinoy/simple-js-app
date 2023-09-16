@@ -19,7 +19,7 @@ let pokemonList = [
 // Task 3
 
 // for loop
-// loops around the pokemonList array
+// loops inside the pokemonList array of objects
 for (let i = 0; i < pokemonList.length; i++) {
     let pokemonName = `${pokemonList[i].name} Height (${pokemonList[i].height})`;
 
@@ -33,7 +33,7 @@ for (let i = 0; i < pokemonList.length; i++) {
         document.write(`${pokemonName} - Tall  <br>`);
     }
 
-    // find the shortest pokemon
+    // filter out the shortest
     else {
         document.write(`${pokemonName} - Small <br>`);
     }
