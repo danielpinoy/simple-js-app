@@ -21,18 +21,20 @@ let pokemonList = [
 // for loop
 // loops around the pokemonList array
 for (let i = 0; i < pokemonList.length; i++) {
+    let pokemonName = `${pokemonList[i].name} Height (${pokemonList[i].height})`;
+
     // condition to find the pokemon with an average height
     if (pokemonList[i].height > 0.4 && pokemonList[i].height < 0.9) {
-        document.write(
-            `${pokemonList[i].name} Height (${pokemonList[i].height}) Average Height <br>`
-        );
+        document.write(`${pokemonName} - Average  <br>`);
     }
+
     //  find the tallest pokemon
     else if (pokemonList[i].height > 1) {
-        document.write(`${pokemonList[i].name} Height (${pokemonList[i].height}) Tall  <br>`);
+        document.write(`${pokemonName} - Tall  <br>`);
     }
+
     // find the shortest pokemon
     else {
-        document.write(`${pokemonList[i].name} Height (${pokemonList[i].height}) Small <br>`);
+        document.write(`${pokemonName} - Small <br>`);
     }
 }
