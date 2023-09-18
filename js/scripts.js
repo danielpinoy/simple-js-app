@@ -9,12 +9,25 @@ let pokemonRepository = (() => {
         { name: "Kadabra", height: 1.3, types: ["psychic"] },
         { name: "Emboar", height: 1.6, types: ["fire", "fighting"] },
     ];
+
     return {
         getAll: function () {
             return pokemonList;
         },
         add: function (pokemon) {
-            return pokemonList.push(pokemon);
+            if (typeof pokemon === "string") {
+                return pokemonList.push(pokemon);
+            } else {
+                alert("Needs to be string");
+            }
+        },
+        // finds names using filter
+        findPokemonByName: function (name) {
+            // finds pokemon name
+            let pokemonName = pokemonList.filter((pokemon) => {
+                return pokemon.name === name;
+            });
+            console.log(pokemonName);
         },
     };
 })();
