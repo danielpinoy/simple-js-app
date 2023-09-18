@@ -1,6 +1,8 @@
 // array of objects containing pokemon
 
 // Task 4
+
+//IIFE
 let pokemonRepository = (() => {
     let pokemonList = [
         { name: "Fearow", height: 1.2, types: ["normal", "flying"] },
@@ -32,6 +34,7 @@ let pokemonRepository = (() => {
     };
 })();
 
+// looping around the array object using forEach
 pokemonRepository.getAll().forEach((pokemon) => {
     let pokemonName = `${pokemon.name} Height (${pokemon.height})`;
 
