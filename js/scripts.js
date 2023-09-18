@@ -1,12 +1,3 @@
-// Task 1
-
-// let favoriteFood = "Pizza";
-
-// document.write(favoriteFood);
-// alert("Hello World");
-
-// Task 2
-
 // array of objects containing pokemon
 let pokemonList = [
     { name: "Fearow", height: 1.2, types: ["normal", "flying"] },
