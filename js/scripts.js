@@ -12,46 +12,84 @@ let pokemonRepository = (() => {
         { name: "Emboar", height: 1.6, types: ["fire", "fighting"] },
     ];
 
+    function addPokemon(pokemon) {
+        if (
+            typeof pokemon === "object" &&
+            "name" in pokemon &&
+            "height" in pokemon &&
+            "types" in pokemon
+        ) {
+            pokemonList.push(pokemon);
+        } else {
+            alert("Invalid input. Please provide a valid Pokémon object.");
+        }
+    }
+
+    function findPokemonByName(name) {
+        let pokemonName = pokemonList.filter((pokemon) => {
+            return pokemon.name === name;
+        });
+        console.log(pokemonName);
+    }
+
+    // Advance task
+    // adding new event listener to your new button
+    function addEventToButton(button, pokemon) {
+        // Add a click event listener to the button
+        button.addEventListener("click", function () {
+            showDetails(pokemon); // Call showDetails with the Pokémon object
+        });
+    }
+
+    function addListItem(pokemon) {
+        let pokemonListElement = document.querySelector("ul");
+        let pokemonName = `${pokemon.name} Height (${pokemon.height})`;
+        let listItem = document.createElement("li");
+        let button = document.createElement("button");
+        button.classList.add("pokemon-button");
+
+        if (pokemon.height > 0.4 && pokemon.height < 0.9) {
+            button.innerText = `${pokemonName} - Average`;
+        } else if (pokemon.height > 1) {
+            button.innerText = `${pokemonName} - Tall`;
+        } else {
+            button.innerText = `${pokemonName} - Small`;
+        }
+
+        listItem.appendChild(button);
+        pokemonListElement.appendChild(listItem);
+        // Adds event listener
+        button.addEventListener("click", function () {
+            showDetails(pokemon); // Call showDetails with the Pokémon object
+        });
+    }
+
+    function showDetails(pokemon) {
+        console.log(pokemon);
+    }
+    function getAll() {
+        return pokemonList;
+    }
     return {
-        getAll: function () {
-            return pokemonList;
-        },
-        add: function (pokemon) {
-            if (typeof pokemon === "string") {
-                return pokemonList.push(pokemon);
-            } else {
-                alert("Needs to be string");
-            }
-        },
-        // finds names using filter
-        findPokemonByName: function (name) {
-            // finds pokemon name
-            let pokemonName = pokemonList.filter((pokemon) => {
-                return pokemon.name === name;
-            });
-            console.log(pokemonName);
-        },
+        getAll: getAll,
+        add: addPokemon,
+        findPokemonByName: findPokemonByName,
+        showPokemon: addListItem,
+        showDetails: showDetails,
+        addEventToButton: addEventToButton,
     };
 })();
 
+// let newPokemon = {
+//     name: "Bulbasaur",
+//     height: 0.7,
+//     types: ["grass", "poison"],
+// };
+// addPokemon(newPokemon);
+
 // looping around the array object using forEach
 pokemonRepository.getAll().forEach((pokemon) => {
-    let pokemonName = `${pokemon.name} Height (${pokemon.height})`;
-
-    // condition to find the pokemon with an average height
-    if (pokemon.height > 0.4 && pokemon.height < 0.9) {
-        document.write(`${pokemonName} - Average  <br>`);
-    }
-
-    //  find the tallest pokemon
-    else if (pokemon.height > 1) {
-        document.write(`${pokemonName} - Tall  <br>`);
-    }
-
-    // filter out the shortest
-    else {
-        document.write(`${pokemonName} - Small <br>`);
-    }
+    pokemonRepository.showPokemon(pokemon);
 });
 
 // // Task 3
