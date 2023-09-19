@@ -91,27 +91,3 @@ let pokemonRepository = (() => {
 pokemonRepository.getAll().forEach((pokemon) => {
     pokemonRepository.showPokemon(pokemon);
 });
-
-// // Task 3
-
-// // for loop
-// // loops inside the pokemonList array of objects
-
-// for (let i = 0; i < pokemonList.length; i++) {
-//     let pokemonName = `${pokemonList[i].name} Height (${pokemonList[i].height})`;
-
-//     // condition to find the pokemon with an average height
-//     if (pokemonList[i].height > 0.4 && pokemonList[i].height < 0.9) {
-//         document.write(`${pokemonName} - Average  <br>`);
-//     }
-
-//     //  find the tallest pokemon
-//     else if (pokemonList[i].height > 1) {
-//         document.write(`${pokemonName} - Tall  <br>`);
-//     }
-
-//     // filter out the shortest
-//     else {
-//         document.write(`${pokemonName} - Small <br>`);
-//     }
-// }
