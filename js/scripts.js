@@ -80,14 +80,16 @@ let pokemonRepository = (() => {
     };
 })();
 
+// looping around the array object using forEach
+pokemonRepository.getAll().forEach((pokemon) => {
+    pokemonRepository.showPokemon(pokemon);
+});
+
+// Test
+
 // let newPokemon = {
 //     name: "Bulbasaur",
 //     height: 0.7,
 //     types: ["grass", "poison"],
 // };
-// addPokemon(newPokemon);
-
-// looping around the array object using forEach
-pokemonRepository.getAll().forEach((pokemon) => {
-    pokemonRepository.showPokemon(pokemon);
-});
+// pokemonRepository.addPokemon(newPokemon);
