@@ -31,7 +31,6 @@ let pokemonRepository = (() => {
             showDetails(pokemon); // Call showDetails with the Pokémon object
         });
     }
-
     function addListItem(pokemon) {
         let pokemonListElement = document.querySelector("ul");
         let pokemonName = `${pokemon.name}`;
@@ -39,23 +38,36 @@ let pokemonRepository = (() => {
         let button = document.createElement("button");
         button.classList.add("pokemon-button");
 
-        // if (pokemon.height > 0.4 && pokemon.height < 0.9) {
-        //     button.innerText = `${pokemonName} - Average`;
-        // } else if (pokemon.height > 1) {
-        //     button.innerText = `${pokemonName} - Tall`;
-        // } else {
-        //     button.innerText = `${pokemonName} - Small`;
-        // }
+        // Create an image element
+        let img = document.createElement("img");
+        img.classList.add("pokemon-image");
+
+        // Fetch the image URL using the detailsUrl
+        fetch(pokemon.detailsUrl)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (pokemon) {
+                let pokemonImage = pokemon.sprites.front_default;
+                img.src = pokemonImage;
+                img.alt = pokemonImage;
+                listItem.appendChild(img);
+            });
+
+        // Set the button text
         button.innerText = pokemonName;
 
+        // Append the button to the list item
         listItem.appendChild(button);
+
+        // Append the list item to the Pokemon list
         pokemonListElement.appendChild(listItem);
+
         // Adds event listener
         button.addEventListener("click", function (event) {
             showDetails(pokemon);
         });
     }
-
     function showDetails(pokemon) {
         loadDetail(pokemon).then(function () {
             console.log(pokemon);
@@ -81,7 +93,7 @@ let pokemonRepository = (() => {
                     };
 
                     add(pokemon);
-                    console.log(pokemon);
+                    // console.log(pokemon);
                 });
                 hideLoadingMessage(1000); // Hide loading message with a 1-second delay
             })
@@ -100,9 +112,9 @@ let pokemonRepository = (() => {
                 return response.json();
             })
             .then(function (details) {
-                item.imageUrl = details.sprites.front_default;
                 item.height = details.height;
-                item.type = details.type;
+                item.type = details.types;
+                item.abilities = details.abilities;
                 hideLoadingMessage(1000); // Hide loading message with a 1-second delay
             })
             .catch(function (e) {
@@ -137,6 +149,7 @@ let pokemonRepository = (() => {
 pokemonRepository.loadList().then(function () {
     // looping around the array object using forEach
     pokemonRepository.getAll().forEach((pokemon) => {
+        // console.log(pokemon);
         pokemonRepository.showPokemon(pokemon);
     });
 });
