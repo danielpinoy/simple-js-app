@@ -16,10 +16,13 @@ ul {
 li {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
+    box-sizing: border-box; /*  padding and border in the width and height  */
+    width: 300px;
+    height: 150px;
+    padding: 10px;
     background-color: #dbdbdb;
 }
-
 /* btn style */
 .pokemon-button {
     border: none;
