@@ -22,6 +22,7 @@ li {
     height: 150px;
     padding: 10px;
     background-color: #dbdbdb;
+    border-radius: 50%;
 }
 /* btn style */
 .pokemon-button {
@@ -34,6 +35,7 @@ li {
     border-radius: 4px;
     cursor: pointer;
     background-color: #dbdbdb;
+    border-radius: 50%;
 
     transition: background-color 0.3s ease;
 }
