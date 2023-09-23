@@ -18,7 +18,7 @@ li {
     align-items: center;
     margin-bottom: 30px;
     box-sizing: border-box; /*  padding and border in the width and height  */
-    width: 300px;
+    width: 350px;
     height: 150px;
     padding: 10px;
     background-color: #dbdbdb;
@@ -29,7 +29,7 @@ li {
     border: none;
     display: inline-block;
     padding: 30px 40px;
-    font-size: 16px;
+    font-size: 1.2rem;
     margin: 5px 15px;
     border: none;
     border-radius: 4px;
@@ -42,4 +42,78 @@ li {
 
 .pokemon-button:hover {
     background-color: #aaaaaa;
+}
+
+.pokemon-race {
+    border-radius: 10px;
+    text-align: center;
+    width: 200px;
+    display: inline-block;
+}
+
+/* Modal styles */
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fff;
+    border-radius: 10px;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.close-button {
+    position: absolute;
+    top: -5px;
+    right: 5px;
+    font-size: 2.2rem;
+    cursor: pointer;
+    color: #666;
+}
+.close-button:hover {
+    color: #ff0000;
+}
+.pokemon-type {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #ff6600;
+}
+
+.pokemon-image {
+    width: 50% !important; /* Adjust the width to make the image larger */
+    height: auto; /* Maintain the aspect ratio */
+    margin-bottom: 10px;
+}
+
+.pokemon-abilities {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+/* Media query for screens smaller than 768px (typical mobile devices) */
+@media (max-width: 768px) {
+    .modal-content {
+        max-width: 300px;
+        margin: 10px auto;
+    }
+
+    .close-button {
+        font-size: 1.8rem;
+    }
 }
