@@ -262,18 +262,3 @@ pokemonRepository.loadList().then(function () {
         pokemonRepository.showPokemon(pokemon);
     });
 });
-
-// function showDetails(pokemon) {
-//     pokemonRepository.loadDetails(pokemon).then(function () {
-//         console.log(pokemon, "da");
-//     });
-// }
-
-// Test
-
-// let newPokemon = {
-//     name: "Bulbasaur",
-//     height: 0.7,
-//     types: ["grass", "poison"],
-// };
-// pokemonRepository.addPokemon(newPokemon);
