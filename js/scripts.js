@@ -205,8 +205,6 @@ let pokemonRepository = (() => {
 
     // Loads list of pokemon to page
     function loadList() {
-        showLoadingMessage(1000); // Show loading message with a 1-second delay
-
         return fetch(apiUrl)
             .then(function (response) {
                 return response.json();
@@ -221,17 +219,13 @@ let pokemonRepository = (() => {
                     add(pokemon);
                     // console.log(pokemon);
                 });
-                hideLoadingMessage(1000); // Hide loading message with a 1-second delay
             })
             .catch(function (e) {
-                hideLoadingMessage(1000); // Hide loading message with a 1-second delay
                 console.error(e);
             });
     }
 
     function loadDetail(item) {
-        showLoadingMessage(1000); // Show loading message with a 1-second delay
-
         let url = item.detailsUrl;
         return fetch(url)
             .then(function (response) {
@@ -244,24 +238,10 @@ let pokemonRepository = (() => {
                 item.type = details.types;
                 item.abilities = details.abilities;
                 item.img = details.sprites.front_default;
-                hideLoadingMessage(1000); // Hide loading message with a 1-second delay
             })
             .catch(function (e) {
-                hideLoadingMessage(1000); // Hide loading message with a 1-second delay
                 console.error(e);
             });
-    }
-
-    function showLoadingMessage(delay) {
-        setTimeout(function () {
-            loadingMessage.style.display = "block";
-        }, delay);
-    }
-
-    function hideLoadingMessage(delay) {
-        setTimeout(function () {
-            loadingMessage.style.display = "none";
-        }, delay);
     }
 
     return {
