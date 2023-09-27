@@ -31,7 +31,7 @@ let pokemonRepository = (() => {
         });
     }
     function addListItem(pokemon) {
-        let pokemonListElement = document.querySelector("ul");
+        let pokemonListElement = document.getElementById("pokemon-list");
         let pokemonName = `${pokemon.name.charAt(0).toUpperCase()}${pokemon.name.slice(1)}`;
         let listItem = document.createElement("li");
         let button = document.createElement("button");
@@ -140,7 +140,7 @@ let pokemonRepository = (() => {
             // Create the image element for the Pokémon image
             let imgElement = document.createElement("img");
             imgElement.src = imgUrl;
-            imgElement.alt = "Pokémon Image";
+            imgElement.alt = imgUrl;
             imgElement.classList.add("img-fluid", "custom-image-size");
 
             // Create the Close button for the modal footer
