@@ -20,7 +20,6 @@ let pokemonRepository = (() => {
         let pokemonName = pokemonList.filter((pokemon) => {
             return pokemon.name === name;
         });
-        console.log(pokemonName);
     }
 
     // Advance task
@@ -33,13 +32,26 @@ let pokemonRepository = (() => {
     }
     function addListItem(pokemon) {
         let pokemonListElement = document.querySelector("ul");
-        let pokemonName = `${pokemon.name}`;
+        let pokemonName = `${pokemon.name.charAt(0).toUpperCase()}${pokemon.name.slice(1)}`;
         let listItem = document.createElement("li");
         let button = document.createElement("button");
-        button.classList.add("pokemon-button");
-
-        // Create an image element
         let pokemonEx = document.createElement("p");
+
+        listItem.classList.add(
+            "list-group-item",
+            "d-flex",
+            "justify-content-between",
+            "align-items-center"
+        );
+
+        button.classList.add(
+            "hover-overlay",
+            "btn",
+            "btn-link",
+            "openModalButton",
+            "font-weight-bold"
+        );
+        listItem.classList.add("list-group-item");
 
         // Fetch the image URL using the detailsUrl
         fetch(pokemon.detailsUrl)
@@ -47,10 +59,10 @@ let pokemonRepository = (() => {
                 return response.json();
             })
             .then(function (pokemon) {
-                console.log(pokemon.species.name);
-                let pokemonExp = pokemon.base_experience;
-                pokemonEx.innerText = `Race ${pokemon.species.name}`;
-                pokemonEx.classList.add("pokemon-race");
+                pokemonEx.innerText = `Race: ${pokemon.species.name
+                    .charAt(0)
+                    .toUpperCase()}${pokemon.species.name.slice(1)}`;
+                pokemonEx.classList.add("text-info");
                 listItem.appendChild(pokemonEx);
             });
 
@@ -68,24 +80,49 @@ let pokemonRepository = (() => {
             showDetails(pokemon);
         });
     }
+
     function showDetails(pokemon) {
         loadDetail(pokemon).then(function () {
             // Extract Pokémon details
             let height = pokemon.height;
             let types = pokemon.type.map((type) => type.type.name).join(", ");
             let abilities = pokemon.abilities.map((ability) => ability.ability.name).join(", ");
-            let imgUrl = pokemon.img; // Replace with the actual URL of the Pokémon image
+            let imgUrl = pokemon.img;
 
             // Create the modal container element
             let modalContainer = document.getElementById("modal-Container");
+            modalContainer.classList.add("modal", "fade", "modal-side"); // Add "modal" and "fade" classes, and the custom "modal-side" class
+            modalContainer.setAttribute("aria-labelledby", "pokemonModalLabel");
+            modalContainer.setAttribute("aria-hidden", "true");
 
-            // Create the modal content
+            // Create the modal dialog and content elements
+            let modalDialog = document.createElement("div");
             let modalContent = document.createElement("div");
+            let modalHeader = document.createElement("div");
+            let modalBody = document.createElement("div");
+            let modalFooter = document.createElement("div");
+
+            modalDialog.classList.add("modal-dialog");
             modalContent.classList.add("modal-content");
+            modalHeader.classList.add("modal-header");
+            modalBody.classList.add("modal-body");
+            modalFooter.classList.add("modal-footer");
 
             // Create the modal title element
-            let modalTitle = document.createElement("h2");
+            let modalTitle = document.createElement("h5");
+            modalTitle.classList.add("modal-title");
             modalTitle.innerText = "Pokémon Details";
+
+            // Create the close button for the modal
+            let closeButton = document.createElement("button");
+            closeButton.classList.add("close");
+            closeButton.setAttribute("type", "button");
+            closeButton.setAttribute("data-dismiss", "modal");
+            closeButton.innerHTML = '<span aria-hidden="true">&times;</span>';
+
+            // Append the close button to the modal header
+            modalHeader.appendChild(modalTitle);
+            modalHeader.appendChild(closeButton);
 
             // Create and populate the details content
             let heightElement = document.createElement("p");
@@ -104,35 +141,42 @@ let pokemonRepository = (() => {
             let imgElement = document.createElement("img");
             imgElement.src = imgUrl;
             imgElement.alt = "Pokémon Image";
-            imgElement.classList.add("pokemon-image");
+            imgElement.classList.add("img-fluid", "custom-image-size");
 
-            // Append the elements to the modal content
-            modalContent.appendChild(modalTitle);
-            modalContent.appendChild(heightElement);
-            modalContent.appendChild(typeElement);
-            modalContent.appendChild(abilitiesElement);
-            modalContent.appendChild(imgElement); // Append the image element
+            // Create the Close button for the modal footer
+            let modalCloseButton = document.createElement("button");
+            modalCloseButton.classList.add("btn", "btn-secondary");
+            modalCloseButton.setAttribute("type", "button");
+            modalCloseButton.setAttribute("data-dismiss", "modal");
+            modalBody.classList.add("text-center");
 
-            // Create the modal element
-            const modal = document.createElement("div");
-            modal.classList.add("modal");
+            modalCloseButton.textContent = "Close";
 
-            // Append the modal content to the modal
-            modal.appendChild(modalContent);
+            //  build the modal structure
 
-            // Clear the modal container and add the modal
-            modalContainer.innerHTML = "";
-            modalContainer.appendChild(modal);
+            modalBody.appendChild(heightElement);
+            modalBody.appendChild(typeElement);
+            modalBody.appendChild(abilitiesElement);
+            modalBody.appendChild(imgElement);
 
-            // Show the modal
-            modal.style.display = "block";
+            modalFooter.appendChild(modalCloseButton);
 
-            // Close the modal when the X button is clicked
-            let closeButton = document.createElement("span");
-            closeButton.classList.add("close-button");
-            closeButton.innerHTML = "&times;";
-            closeButton.addEventListener("click", closeModal);
-            modalTitle.appendChild(closeButton);
+            modalContent.appendChild(modalHeader);
+            modalContent.appendChild(modalBody);
+            modalContent.appendChild(modalFooter);
+
+            modalDialog.appendChild(modalContent);
+
+            // Append the modal dialog to the modal container
+            modalContainer.innerHTML = ""; // Clear existing content
+            modalContainer.appendChild(modalDialog);
+            console.log(modalContainer);
+
+            // Get all elements with the class name "openModalButton"
+            let openModalButtons = document.getElementsByClassName("openModalButton");
+
+            // Opens Modal when pressed
+            $("#modal-Container").modal("show");
 
             // Close the modal when the Escape key is pressed
             document.addEventListener("keydown", function (event) {
@@ -143,7 +187,7 @@ let pokemonRepository = (() => {
 
             // Close the modal when clicking anywhere outside of it
             window.addEventListener("click", function (event) {
-                if (event.target === modal) {
+                if (event.target === modalContainer) {
                     closeModal();
                 }
             });
@@ -152,7 +196,7 @@ let pokemonRepository = (() => {
 
     function closeModal() {
         let modalContainer = document.getElementById("modal-Container");
-        modalContainer.innerHTML = ""; // Clear the modal content
+        $("#modal-Container").modal("hide");
     }
 
     function getAll() {

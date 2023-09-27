@@ -4,21 +4,86 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
         <link rel="stylesheet" href="css/styles.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:ital@1&family=Inconsolata:wght@400;500;600;700&family=Lato:ital,wght@1,300&display=swap"
-            rel="stylesheet" />
+
         <title>First JavaScript</title>
     </head>
     <body>
-        <!-- Your existing Pokemon list -->
-        <ul class="pokemon-list">
-            <h1>PokeDex</h1>
+        <ul class="pokemon-list list-group container">
+            <h1 class="display-1">PokeDex</h1>
             <div id="loading-message" style="display: none">Loading...</div>
         </ul>
+
         <div id="modal-Container"></div>
+        <!-- Footer -->
+        <footer class="bg-dark text-center text-white">
+            <!-- Grid container -->
+            <div class="container p-4">
+                <!-- Section: Form -->
+                <section class="">
+                    <form action="">
+                        <!--Grid row-->
+                        <div class="row d-flex justify-content-center">
+                            <!--Grid column-->
+                            <div class="col-auto">
+                                <p class="pt-2">
+                                    <strong>Sign up </strong>
+                                </p>
+                            </div>
+                            <!--Grid column-->
+
+                            <!--Grid column-->
+                            <div class="col-md-5 col-12">
+                                <!-- Email input -->
+                                <div class="form-outline form-white mb-4">
+                                    <input type="email" id="form5Example21" class="form-control" />
+                                    <label class="form-label" for="form5Example21"
+                                        >Email address</label
+                                    >
+                                </div>
+                            </div>
+                            <!--Grid column-->
+
+                            <!--Grid column-->
+                            <div class="col-auto">
+                                <!-- Submit button -->
+                                <button type="submit" class="btn btn-outline-light mb-4">
+                                    Subscribe
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+                <!-- Section: Form -->
+
+                <!-- Section: Text -->
+                <section class="mb-4">
+                    <p>
+                        A Pokédex is a handheld electronic encyclopedia specifically designed to
+                        catalog, record, and provide essential details about Pokémon species. It is
+                        an essential companion for Pokémon Trainers on their journey to become
+                        Pokémon Masters. The device resembles a compact computer or smartphone,
+                        featuring a screen, buttons, and a user-friendly interface.
+                    </p>
+                </section>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+                © 2020 Copyright Pokedex App
+            </div>
+            <!-- Copyright -->
+        </footer>
+        <!-- Footer -->
         <script src="js/promise-polyfill.js"></script>
         <script src="js/fetch.umd.js"></script>
         <script src="js/scripts.js"></script>
