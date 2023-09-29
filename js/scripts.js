@@ -1,5 +1,3 @@
-// array of objects containing pokemon
-
 // Task 4
 
 //IIFE

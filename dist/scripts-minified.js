@@ -6,10 +6,10 @@ let pokemonRepository = (() => {
             ? e.push(t)
             : alert("Invalid input. Please provide a valid Pok\xe9mon object.");
     }
-    function a(t) {
+    function i(t) {
         e.filter((e) => e.name === t);
     }
-    function i(e, t) {
+    function a(e, t) {
         e.addEventListener("click", function () {
             s(t);
         });
@@ -17,10 +17,10 @@ let pokemonRepository = (() => {
     function o(e) {
         let t = document.getElementById("pokemon-list"),
             n = `${e.name.charAt(0).toUpperCase()}${e.name.slice(1)}`,
-            a = document.createElement("li"),
-            i = document.createElement("button"),
+            i = document.createElement("li"),
+            a = document.createElement("button"),
             o = document.createElement("p");
-        a.classList.add(
+        i.classList.add(
             "list-group-item",
             "d-flex",
             "justify-content-between",
@@ -28,7 +28,7 @@ let pokemonRepository = (() => {
             "container",
             "circle"
         ),
-            i.classList.add(
+            a.classList.add(
                 "hover-overlay",
                 "btn",
                 "btn-link",
@@ -37,7 +37,7 @@ let pokemonRepository = (() => {
                 "font-weight-bold",
                 "letter-spacing-sm"
             ),
-            a.classList.add("list-group"),
+            i.classList.add("list-group"),
             fetch(e.detailsUrl)
                 .then(function (e) {
                     return e.json();
@@ -47,12 +47,12 @@ let pokemonRepository = (() => {
                         .charAt(0)
                         .toUpperCase()}${e.species.name.slice(1)}`),
                         o.classList.add("font-weight-bold"),
-                        a.appendChild(o);
+                        i.appendChild(o);
                 }),
-            (i.innerText = n),
-            a.appendChild(i),
-            t.appendChild(a),
-            i.addEventListener("click", function (t) {
+            (a.innerText = n),
+            i.appendChild(a),
+            t.appendChild(i),
+            a.addEventListener("click", function () {
                 s(e);
             });
     }
@@ -60,8 +60,8 @@ let pokemonRepository = (() => {
         c(e).then(function () {
             let t = e.height,
                 n = e.type.map((e) => e.type.name).join(", "),
-                a = e.abilities.map((e) => e.ability.name).join(", "),
-                i = e.img,
+                i = e.abilities.map((e) => e.ability.name).join(", "),
+                a = e.img,
                 o = `Image of ${e.name}`,
                 s = document.getElementById("modal-Container");
             s.classList.add("modal", "fade"),
@@ -89,14 +89,14 @@ let pokemonRepository = (() => {
             let f = document.createElement("p");
             (f.innerHTML = `<strong>Height:</strong> <span>${t}</span>`),
                 f.classList.add("pokemon-height");
-            let g = document.createElement("p");
-            (g.innerHTML = `<strong>Type:</strong> <span>${n}</span>`),
-                g.classList.add("pokemon-type");
             let b = document.createElement("p");
-            (b.innerHTML = `<strong>Abilities:</strong> <span>${a}</span>`),
-                b.classList.add("pokemon-abilities");
+            (b.innerHTML = `<strong>Type:</strong> <span>${n}</span>`),
+                b.classList.add("pokemon-type");
+            let g = document.createElement("p");
+            (g.innerHTML = `<strong>Abilities:</strong> <span>${i}</span>`),
+                g.classList.add("pokemon-abilities");
             let L = document.createElement("img");
-            (L.src = i), (L.alt = o), L.classList.add("img-fluid", "custom-image-size");
+            (L.src = a), (L.alt = o), L.classList.add("img-fluid", "custom-image-size");
             let E = document.createElement("button");
             E.classList.add("btn", "btn-secondary"),
                 E.setAttribute("type", "button"),
@@ -104,8 +104,8 @@ let pokemonRepository = (() => {
                 p.classList.add("text-center"),
                 (E.textContent = "Close"),
                 p.appendChild(f),
-                p.appendChild(g),
                 p.appendChild(b),
+                p.appendChild(g),
                 p.appendChild(L),
                 m.appendChild(E),
                 r.appendChild(c),
@@ -115,7 +115,6 @@ let pokemonRepository = (() => {
                 (s.innerHTML = ""),
                 s.appendChild(d),
                 console.log(s),
-                document.getElementsByClassName("openModalButton"),
                 $("#modal-Container").modal("show"),
                 document.addEventListener("keydown", function (e) {
                     "Escape" === e.key && l();
@@ -126,7 +125,7 @@ let pokemonRepository = (() => {
         });
     }
     function l() {
-        document.getElementById("modal-Container"), $("#modal-Container").modal("hide");
+        $("#modal-Container").modal("hide");
     }
     function d() {
         return e;
@@ -161,18 +160,15 @@ let pokemonRepository = (() => {
                 console.error(e);
             });
     }
-    return (
-        document.getElementById("loading-message"),
-        {
-            getAll: d,
-            add: n,
-            findPokemonByName: a,
-            showPokemon: o,
-            showDetails: s,
-            addEventToButton: i,
-            loadList: r,
-        }
-    );
+    return {
+        getAll: d,
+        add: n,
+        findPokemonByName: i,
+        showPokemon: o,
+        showDetails: s,
+        addEventToButton: a,
+        loadList: r,
+    };
 })();
 pokemonRepository.loadList().then(function () {
     pokemonRepository.getAll().forEach((e) => {
