@@ -1,39 +1,30 @@
 body {
-    animation: colorCycle 8s infinite;
-    background-color: rgb(193, 226, 255);
+    animation: 8s infinite colorCycle;
+    background-color: #c1e2ff;
 }
-
 .letter-spacing-sm {
     letter-spacing: 1px;
 }
-
 .custom-image-size {
     width: 150px;
     height: auto;
 }
-.dark-blue {
-    color: #0051a8;
-}
+.dark-blue,
 .text-info {
     color: #0051a8;
 }
-
 .circle {
     transition: border-radius 0.3s ease-in-out;
 }
-
 .circle:hover {
     border-radius: 100%;
 }
-
 @keyframes colorCycle {
     0%,
     100% {
-        background-color: rgb(193, 226, 255);
+        background-color: #c1e2ff;
     }
-    50% {
-        background-color: #cacaca;
-    }
+    50%,
     51% {
         background-color: #cacaca;
     }

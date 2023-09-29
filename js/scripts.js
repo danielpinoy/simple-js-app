@@ -41,7 +41,9 @@ let pokemonRepository = (() => {
             "list-group-item",
             "d-flex",
             "justify-content-between",
-            "align-items-center"
+            "align-items-center",
+            "container",
+            "circle"
         );
 
         button.classList.add(
@@ -64,7 +66,8 @@ let pokemonRepository = (() => {
                 pokemonEx.innerText = `Race: ${pokemon.species.name
                     .charAt(0)
                     .toUpperCase()}${pokemon.species.name.slice(1)}`;
-                pokemonEx.classList.add("text-info");
+                pokemonEx.classList.add("font-weight-bold");
+
                 listItem.appendChild(pokemonEx);
             });
 
@@ -90,7 +93,7 @@ let pokemonRepository = (() => {
             let types = pokemon.type.map((type) => type.type.name).join(", ");
             let abilities = pokemon.abilities.map((ability) => ability.ability.name).join(", ");
             let imgUrl = pokemon.img;
-
+            let imgAlt = `Image of ${pokemon.name}`;
             // Create the modal container element
             let modalContainer = document.getElementById("modal-Container");
             modalContainer.classList.add("modal", "fade"); // Add "modal" and "fade" classes, and the custom "modal-side" class
@@ -142,7 +145,7 @@ let pokemonRepository = (() => {
             // Create the image element for the Pokémon image
             let imgElement = document.createElement("img");
             imgElement.src = imgUrl;
-            imgElement.alt = imgUrl;
+            imgElement.alt = imgAlt;
             imgElement.classList.add("img-fluid", "custom-image-size");
 
             // Create the Close button for the modal footer
