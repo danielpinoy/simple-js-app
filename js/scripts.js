@@ -6,8 +6,6 @@
 let pokemonRepository = (() => {
     let pokemonList = [];
     let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=200";
-    let loadingMessage = document.getElementById("loading-message");
-
     function add(pokemon) {
         if (typeof pokemon === "object" && "name" in pokemon) {
             pokemonList.push(pokemon);
@@ -81,7 +79,7 @@ let pokemonRepository = (() => {
         pokemonListElement.appendChild(listItem);
 
         // Adds event listener
-        button.addEventListener("click", function (event) {
+        button.addEventListener("click", function () {
             showDetails(pokemon);
         });
     }
@@ -178,7 +176,6 @@ let pokemonRepository = (() => {
             console.log(modalContainer);
 
             // Get all elements with the class name "openModalButton"
-            let openModalButtons = document.getElementsByClassName("openModalButton");
 
             // Opens Modal when pressed
             $("#modal-Container").modal("show");
@@ -200,7 +197,6 @@ let pokemonRepository = (() => {
     }
 
     function closeModal() {
-        let modalContainer = document.getElementById("modal-Container");
         $("#modal-Container").modal("hide");
     }
 
