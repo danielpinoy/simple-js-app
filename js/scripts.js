@@ -48,10 +48,12 @@ let pokemonRepository = (() => {
             "hover-overlay",
             "btn",
             "btn-link",
+            "dark-blue",
             "openModalButton",
-            "font-weight-bold"
+            "font-weight-bold",
+            "letter-spacing-sm"
         );
-        listItem.classList.add("list-group-item");
+        listItem.classList.add("list-group");
 
         // Fetch the image URL using the detailsUrl
         fetch(pokemon.detailsUrl)
@@ -91,7 +93,7 @@ let pokemonRepository = (() => {
 
             // Create the modal container element
             let modalContainer = document.getElementById("modal-Container");
-            modalContainer.classList.add("modal", "fade", "modal-side"); // Add "modal" and "fade" classes, and the custom "modal-side" class
+            modalContainer.classList.add("modal", "fade"); // Add "modal" and "fade" classes, and the custom "modal-side" class
             modalContainer.setAttribute("aria-labelledby", "pokemonModalLabel");
             modalContainer.setAttribute("aria-hidden", "true");
 
@@ -109,7 +111,7 @@ let pokemonRepository = (() => {
             modalFooter.classList.add("modal-footer");
 
             // Create the modal title element
-            let modalTitle = document.createElement("h5");
+            let modalTitle = document.createElement("h2");
             modalTitle.classList.add("modal-title");
             modalTitle.innerText = "Pokémon Details";
 

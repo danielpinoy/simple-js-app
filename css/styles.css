@@ -3,6 +3,21 @@ body {
     background-color: rgb(193, 226, 255);
 }
 
+.letter-spacing-sm {
+    letter-spacing: 1px;
+}
+
+.custom-image-size {
+    width: 150px;
+    height: auto;
+}
+.dark-blue {
+    color: #0051a8;
+}
+.text-info {
+    color: #0051a8;
+}
+
 @keyframes colorCycle {
     0%,
     100% {
@@ -14,8 +29,4 @@ body {
     51% {
         background-color: #cacaca;
     }
-}
-.custom-image-size {
-    width: 150px;
-    height: auto;
 }
