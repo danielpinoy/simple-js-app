@@ -112,8 +112,9 @@ let pokemonRepository = (() => {
             // Create the modal title element
             let modalTitle = document.createElement("h2");
             modalTitle.classList.add("modal-title");
-            modalTitle.innerText = "Pokémon Details";
-
+            modalTitle.innerText = `${pokemon.name.charAt(0).toUpperCase()}${pokemon.name.slice(
+                1
+            )}`;
             // Create the close button for the modal
             let closeButton = document.createElement("button");
             closeButton.classList.add("close");
@@ -153,8 +154,14 @@ let pokemonRepository = (() => {
 
             modalCloseButton.textContent = "Close";
 
+            //
+
+            let detailElement = document.createElement("h3");
+            detailElement.classList.add("h3");
+            detailElement.innerHTML = "Pokemon Details";
             //  build the modal structure
 
+            modalBody.appendChild(detailElement);
             modalBody.appendChild(heightElement);
             modalBody.appendChild(typeElement);
             modalBody.appendChild(abilitiesElement);
@@ -171,7 +178,6 @@ let pokemonRepository = (() => {
             // Append the modal dialog to the modal container
             modalContainer.innerHTML = ""; // Clear existing content
             modalContainer.appendChild(modalDialog);
-            console.log(modalContainer);
 
             // Get all elements with the class name "openModalButton"
 
@@ -216,7 +222,6 @@ let pokemonRepository = (() => {
                     };
 
                     add(pokemon);
-                    // console.log(pokemon);
                 });
             })
             .catch(function (e) {
@@ -231,8 +236,6 @@ let pokemonRepository = (() => {
                 return response.json();
             })
             .then(function (details) {
-                console.log(details.sprites.front_default);
-
                 item.height = details.height;
                 item.type = details.types;
                 item.abilities = details.abilities;
@@ -257,7 +260,7 @@ let pokemonRepository = (() => {
 pokemonRepository.loadList().then(function () {
     // looping around the array object using forEach
     pokemonRepository.getAll().forEach((pokemon) => {
-        // console.log(pokemon);
+        //
         pokemonRepository.showPokemon(pokemon);
     });
 });
