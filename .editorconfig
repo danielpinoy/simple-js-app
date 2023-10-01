@@ -1,0 +1,6 @@
+[scripts-minified.js]
+indent_style = disable
+indent_size = disable
+end_of_line = disable
+trim_trailing_whitespace = disable
+insert_final_newline = disable
